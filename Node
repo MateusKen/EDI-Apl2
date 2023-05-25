@@ -19,31 +19,23 @@ public class Node {
 	// TODO: Implementar a classe conforme o enunciado da atividade Apl2.
 	
 }
+private String nome;
 private String id;
-	private String nome;
-	private float nota;
-	private Node prox;
-  private Node ante;
+private float nota;
+private Node prox;
+private Node ante;
 
   public Node(){
     this("", "", 0, null, null);
   }
   
-  public Node(String id, String nome, float nota, Node next, Node prev){
-    this.id = id;
+  public Node(String nome, String id, float nota, Node next, Node prev){
     this.nome = nome;
+    this.id = id;
     this.nota = nota;
     this.next = prox;
     this.prev = ante;
   }
-
-  public String getId() {
-		return id;
-	}
-	
-	public void setId(String id) {
-		this.id = id;
-	}
 	
 	public String getNome() {
 		return nome;
@@ -51,6 +43,14 @@ private String id;
 	
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+  	public String getId() {
+		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	public float getNota() {
@@ -61,21 +61,21 @@ private String id;
 		this.nota = nota;
 	}
 
-  public Node getProx(){
-    return prox;
-  }
+  	public Node getProx(){
+    		return prox;
+  	}
 
-  public void setProx(Node next){
-    this.prox = prox;
-  }
+  	public void setProx(Node next){
+    		this.prox = prox;
+  	}
 
-  public Node getAnte(){
-    return ante;
-  }
+  	public Node getAnte(){
+    		return ante;
+  	}	
 
-  public void setAnte(Node prev){
-    this.ante = ante;
-  }
+  	public void setAnte(Node prev){
+    		this.ante = ante;
+  	}
 
   @Override
 	public String toString() {
