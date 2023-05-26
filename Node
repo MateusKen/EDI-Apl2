@@ -19,8 +19,8 @@ public class Node {
 	// TODO: Implementar a classe conforme o enunciado da atividade Apl2.
 	
 }
-private String nome;
 private String id;
+private String nome;
 private float nota;
 private Node prox;
 private Node ante;
@@ -30,27 +30,25 @@ private Node ante;
   }
   
   public Node(String nome, String id, float nota, Node next, Node prev){
-    this.nome = nome;
     this.id = id;
+    this.nome = nome;
     this.nota = nota;
     this.next = prox;
     this.prev = ante;
   }
+	public String getId() {
+		return id;
+	}
 	
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getNome() {
 		return nome;
 	}
 	
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	
-  	public String getId() {
-		return id;
-	}
-	
-	public void setId(String id) {
-		this.id = id;
 	}
 	
 	public float getNota() {
@@ -61,24 +59,24 @@ private Node ante;
 		this.nota = nota;
 	}
 
-  	public Node getProx(){
-    		return prox;
+  	public Node getNext(){
+    		return next;
   	}
 
-  	public void setProx(Node next){
-    		this.prox = prox;
+  	public void setNext(Node next){
+    		this.next = Next;
   	}
 
-  	public Node getAnte(){
-    		return ante;
+  	public Node getPrev(){
+    		return prev;
   	}	
 
-  	public void setAnte(Node prev){
-    		this.ante = ante;
+  	public void setPrev(Node prev){
+    		this.prev = prev;
   	}
 
   @Override
 	public String toString() {
-		return "[dados: (" + id + ";" + nome + ";" + nota + ") | proximo: " + prox + "]";
+		return "[dados: (" + id + ";" + nome + ";" + nota + ") | next: " + next + "]";
 	}
 }
