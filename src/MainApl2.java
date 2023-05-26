@@ -54,8 +54,6 @@ public class MainApl2 {
 		System.out.println(list);
 		System.out.println("<<<<<<<<<< Dados originais (sistema legado) <<<<<<<<<<\n");
 		
-		
-		/*
 		DLinkedList fixedList = Operation.map(list);
 		System.out.println(">>>>>>>>>> Dados convertidos para a nova representação dos dados >>>>>>>>>>");
 		System.out.println(fixedList);
@@ -126,7 +124,7 @@ public class MainApl2 {
 		System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
 		testList.clear();
 		System.out.println(">>>>>>>>>> testList.clear() >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList.clear() <<<<<<<<<<\n");
-		*/
+		
 	}
 
 }
