@@ -18,12 +18,12 @@ public class Node {
 	
 	// TODO: Implementar a classe conforme o enunciado da atividade Apl2.
 	
-}
+
 private String id;
 private String nome;
 private float nota;
-private Node prox;
-private Node ante;
+private Node next;
+private Node prev;
 
   public Node(){
     this("", "", 0, null, null);
@@ -33,8 +33,8 @@ private Node ante;
     this.id = id;
     this.nome = nome;
     this.nota = nota;
-    this.next = prox;
-    this.prev = ante;
+    this.next = next;
+    this.prev = prev;
   }
 	public String getId() {
 		return id;
