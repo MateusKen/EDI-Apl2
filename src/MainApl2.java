@@ -21,8 +21,7 @@ public class MainApl2 {
 	
 	public static void main(String[] args) {
 		
-		// Carregando cada linha do arquivo "dados.txt" como um nó na LinkedListOriginal list.
-		LinkedListOriginal list = new LinkedListOriginal();
+		// Le o arquivo dados.txt e coloca todo o texto em uma string "conteudo"
 
 		String conteudo = null;
 		try {
@@ -34,14 +33,16 @@ public class MainApl2 {
 		}
 		
 		//Coloca cada linha em um node da lista
+		LinkedListOriginal list = new LinkedListOriginal();
 		
 		String[] linhas = conteudo.split("\n");
 		
 		for (int i = 0; i < linhas.length; i++) {
 			
 			String linha = linhas[i];
-			String[] partes = linha.split("#");
 			
+			//Cada parte da linha em um atributo do node
+			String[] partes = linha.split("#");
 			list.append(Integer.parseInt(partes[0]), 
 						partes[1], 
 						Integer.parseInt(partes[2]), 
