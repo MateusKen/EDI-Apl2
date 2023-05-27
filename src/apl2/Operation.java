@@ -70,8 +70,18 @@ public class Operation {
 	 * @return Uma nova {@code DLinkedList} que contém a coleção de dados ({@code data}) filtrada com nós que possuem apenas pessoas com notas válidas.
 	 */
 	public static DLinkedList filterRemoveNonGraded(final DLinkedList data) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		Node pAnda = data.getHead();
+		
+		while(pAnda != null) {
+			float nota = pAnda.getNota();
+			if (nota == 99.9) {
+				data.removeNode(pAnda.getId());
+			}
+			System.out.println(pAnda);
+			pAnda = pAnda.getNext();
+		}
+		
+		return data;
 	}
 
 	/**
@@ -84,8 +94,17 @@ public class Operation {
 	 * @return Uma nova {@code DLinkedList} que contém a coleção de dados ({@code data}) filtrada com nós que possuem apenas pessoas com notas inválidas.
 	 */
 	public static DLinkedList filterRemoveGraded(final DLinkedList data) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		Node pAnda = data.getHead();
+		
+		while(pAnda != null) {
+			float nota = pAnda.getNota();
+			if (nota != 99.9) {
+				data.removeNode(pAnda.getId());
+			}
+			pAnda = pAnda.getNext();
+		}
+		
+		return data;
 	}
 
 	/**
@@ -100,8 +119,17 @@ public class Operation {
 	 * @return Uma nova {@code DLinkedList} que contém a coleção de dados ({@code data}) filtrada somente com pessoas com notas maiores do que {@code average}.
 	 */
 	public static DLinkedList filterRemoveBelowAverage(final DLinkedList data, float average) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		Node pAnda = data.getHead();
+		
+		while(pAnda != null) {
+			float nota = pAnda.getNota();
+			if (nota < average) {
+				data.removeNode(pAnda.getId());
+			}
+			pAnda = pAnda.getNext();
+		}
+		
+		return data;
 	}
 	
 	/**
