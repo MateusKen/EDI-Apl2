@@ -83,7 +83,6 @@ public class MainApl2 {
 		    	//Gerar o arquivo CSV.
 		    	try {
 		    		Data.saveStringToTextFile("dados.csv", contents);
-		    		System.out.print("Arquivo dados.csv carregado com sucesso!\n");
 		    	} catch(IOException e) {
 		    		System.err.println("Erro ao gravar arquivo!\n");
 		    	}
