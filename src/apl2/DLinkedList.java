@@ -4,23 +4,12 @@
 
 package apl2;
 
-// -- A classe DLinkedList (que pertence ao pacote apl2) deve implementar uma
-// lista duplamente encadeada. Os nós dessa lista são do tipo [da classe] Node.
-// -- A classe deve possuir dois nós especiais, head e tail, que são
-// referências para o primeiro e último nó da lista, respectivamente.
-// -- A classe deve possuir um contador de quantos nós existem na lista.
-// -- A classe deve sobrescrever (override) o método public String toString()
-// {...}, retornando uma string com o conteúdo da lista.
-// -- A classe deve implementar as operações a seguir, respeitando o
-// comportamento descrito em cada operação.
-
 public class DLinkedList {
+	
 	private Node head;
 	private Node tail;
 	private int count;
 	
-	// TODO: Implementar a classe conforme o enunciado da atividade Apl2.
-
 
 // OPERAÇÃO:		Método construtor
 // COMPORTAMENTO:	Cria uma lista vazia.
@@ -30,38 +19,39 @@ public class DLinkedList {
 		count = 0;
 	}
 
-
+	
 // OPERAÇÃO:		insert(<dados da pessoa>)
 // COMPORTAMENTO:	Aloca um Node que contém os <dados da pessoa> e insere o
-//					novo nó no início da lista.
+//						novo nó no início da lista.
 	public void insert(String id, String nome, float nota) {
-	    Node node = new Node(id, nome, nota, head, null);
-	    
-	    if (isEmpty()) {
-	        tail = node;
-	    } else {
-	        head.setPrev(node);
-	    }
-	    
-	    head = node;
-	    count++;
+		Node node = new Node(id, nome, nota, head, null);
+		    
+		if (isEmpty()) {
+		    tail = node;
+		} else {
+		    head.setPrev(node);
+		}
+		    
+		head = node;
+		count++;
 	}
+
+
 
 // OPERAÇÃO:		append(<dados da pessoa>)
 // COMPORTAMENTO:	Aloca um Node que contém os <dados da pessoa> e insere o
-//					novo nó no final da lista.
+//							novo nó no final da lista.
 	public void append(String id, String nome, float nota) {
-	    Node node = new Node(id, nome, nota, null, tail);
-	    
-	    if (isEmpty()) {
-	        head = node;
-	        tail = node;
-	    } else {
-	        tail.setNext(node);
-	        tail = node;
-	    }
-
-	    count++;
+		Node node = new Node(id, nome, nota, null, tail);
+			    
+		if (isEmpty()) {
+			head = node;
+		} else {
+			tail.setNext(node);
+		}
+		
+		tail = node;
+		count++;
 	}
 
 
@@ -72,7 +62,24 @@ public class DLinkedList {
 //					Ou retorna null caso a lista esteja vazia.
 	public Node removeHead() {
 		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		if (isEmpty()) {
+			return null;
+		}
+		
+		Node toRemove = head;
+
+		head = head.getNext();
+		--count;
+		
+		if (isEmpty()) {
+			tail = null;
+		}
+		else {
+			head.setPrev(null);
+		}
+		
+		toRemove.setNext(null);
+		return toRemove;
 	}
 
 
@@ -81,8 +88,20 @@ public class DLinkedList {
 //					nó removido.
 //					Ou retorna null caso a lista esteja vazia.
 	public Node removeTail() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		if (isEmpty()) 
+			return null;
+		if (head == tail)
+			return removeHead();
+		
+		Node toRemove = tail;
+		
+		tail = tail.getPrev();
+		--count;
+		
+		tail.setNext(null);
+
+		toRemove.setPrev(null);
+		return toRemove;
 	}
 
 
@@ -91,8 +110,34 @@ public class DLinkedList {
 //					a referência do nó removido.
 //					Ou retorna null caso não exista um nó com <ID da pessoa>.
 	public Node removeNode(String id) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		Node pAnda = head;
+		
+		while(pAnda.getId() != id && pAnda.getNext() != null) {
+			pAnda = pAnda.getNext();
+		}
+		if (pAnda.getId() != id) return null;
+		
+		Node prox = pAnda.getNext();
+		Node ant = pAnda.getPrev();
+		
+	    if (ant != null) {
+	        ant.setNext(prox);
+	    } else {
+	        head = prox; 
+	    }
+
+	    if (prox != null) {
+	        prox.setPrev(ant);
+	    } else {
+	        tail = ant;
+	    }
+
+	    pAnda.setNext(null);
+	    pAnda.setPrev(null);
+	    
+	    --count;
+		
+		return pAnda;
 	}
 
 
@@ -117,14 +162,16 @@ public class DLinkedList {
 //					da lista.
 //					Ou retorna null caso não exista um nó com <ID da pessoa>.
 	public Node getNode(String id) {
-		Node pAnda = this.head;
-		while(pAnda.getId() != id || pAnda.getNext() != null) {
+		Node pAnda = head;
+		
+		while(pAnda.getId() != id && pAnda.getNext() != null) {
 			pAnda = pAnda.getNext();
 		}
 		if (pAnda.getId() != id) return null;
 		return pAnda;	
 		
 	}
+		
 
 
 // OPERAÇÃO:		count()
@@ -144,18 +191,34 @@ public class DLinkedList {
 // OPERAÇÃO:		clear()
 // COMPORTAMENTO:	Esvazia a lista, liberando a memória de todos os nós da lista.
 	public void clear() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		while (!isEmpty()) {
+			removeHead();	
+		}
 	}
 
 
 // OPERAÇÃO:		toString()
 // COMPORTAMENTO:	Retorna uma string com o conteúdo da lista (caso queira, use o
-//					exemplo do método toString() da classe LinkedListOriginal).
 	@Override
 	public String toString() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("(" + count + ") \n");
+		
+		Node node = head;
+		while (node != null) {
+			sb.append("(23.S1-")
+			.append(node.getId())
+			.append(" ; ")
+			.append(node.getNome())
+			.append(" ; ")
+			.append(node.getNota())
+			.append(") -> \n");
+			node = node.getNext();
+		}
+		sb.append("null.");
+		
+		return sb.toString();
 	}
 
 }
