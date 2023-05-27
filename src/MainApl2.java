@@ -85,9 +85,16 @@ public class MainApl2 {
 		System.out.println(contents);
 		System.out.println("<<<<<<<<<< Lista mapeada para uma única string <<<<<<<<<<\n");
 		
-		
+		//Item 2 do menu
 		// TODO: Salvar o conteúdo da String contents em um arquivo chamado "dados.csv".
-
+		String nomeArquivoCSV = "dados.csv";
+		String conteudo2 = "* nó,da,DLinkedList";
+		try {
+			Data.saveStringToTextFile(nomeArquivoCSV, conteudo2);
+		} catch (IOException e){
+			System.err.println("Erro ao gravar arquivo!");
+			e.printStackTrace();
+		}
 		
 		Node test1 = fixedList.getNode("23.S1-999");
 		System.out.println(">>>>>>>>>> test1 >>>>>>>>>>\n" + test1 + "\n<<<<<<<<<< test1 <<<<<<<<<<\n");
