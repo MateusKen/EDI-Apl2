@@ -3,7 +3,11 @@
 //*************************** ATENÇÃO! *****************************
 // arquivo: src/apl2/Operation.java
 
-// TODO: Colocar a identificação dos(as) integrantes aqui.
+// NOME: Enrico Cuono Alves Pereira		TIA: 32258798
+// NOME: Erik Samuel Viana Hsu			TIA: 32265921
+// NOME: Mateus Kenzo Iochimoto			TIA: 32216289
+// NOME: Rodrigo Machado de Assis Oliveira de Lima		TIA: 32234678
+// NOME: Thiago Shihan Cardoso Toma		TIA: 32210744
 
 package apl2;
 
