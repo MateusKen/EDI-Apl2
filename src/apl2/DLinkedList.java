@@ -35,33 +35,35 @@ public class DLinkedList {
 // COMPORTAMENTO:	Aloca um Node que contém os <dados da pessoa> e insere o
 //					novo nó no início da lista.
 	public void insert(String id, String nome, float nota) {
-		Node node = new Node(id, nome, nota, head, null);
-		
-		if (isEmpty()) {
-			tail = node;
-		}
-		head.setPrev(node);
-		head = node;
-
-		++count;
+	    Node node = new Node(id, nome, nota, head, null);
+	    
+	    if (isEmpty()) {
+	        tail = node;
+	    } else {
+	        head.setPrev(node);
+	    }
+	    
+	    head = node;
+	    count++;
 	}
-
 
 // OPERAÇÃO:		append(<dados da pessoa>)
 // COMPORTAMENTO:	Aloca um Node que contém os <dados da pessoa> e insere o
 //					novo nó no final da lista.
 	public void append(String id, String nome, float nota) {
-		Node node = new Node(id, nome, nota, null, tail);
-		
-		if (isEmpty()) {
-			head = node;
-		} 
-		
-		tail.setNext(node);
-		tail = node;
+	    Node node = new Node(id, nome, nota, null, tail);
+	    
+	    if (isEmpty()) {
+	        head = node;
+	        tail = node;
+	    } else {
+	        tail.setNext(node);
+	        tail = node;
+	    }
 
-		++count;
+	    count++;
 	}
+
 
 
 // OPERAÇÃO: 		removeHead()
