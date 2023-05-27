@@ -18,9 +18,46 @@ public class Operation {
 	 * @param original Base de dados original carregada em uma {@code LinkedListOriginal}.
 	 * @return Uma nova {@code DLinkedList} que contém o mapeamento da coleção de dados {@code original} para a nova estrutura usada pelo sistema de notas. 
 	 */
-	public static DLinkedList map(final LinkedListOriginal original) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+	public static DLinkedList map(final LinkedListOriginal list) {
+		DLinkedList ListaMapeada = new DLinkedList(); //Cria a DLinkedList "ListaMapeada"
+		NodeOriginal pAnda = list.getHead();
+		
+		
+		while(pAnda != null) {
+			//Pega os dados do nó da LinkedListOriginal
+			int id = pAnda.getId();
+			String nome = pAnda.getNome();
+			int inteiro = pAnda.getInteiro();
+			int decimo = pAnda.getDecimo();
+			NodeOriginal next = pAnda.getNext();
+			
+			
+			String IdNovo = "23.S1-" + id;
+			Node noNovo = new Node();
+			noNovo.setId(IdNovo);
+			noNovo.setNome(nome);
+			
+			float nota;
+			if (decimo == 0) {
+				nota = inteiro + 0.0f;
+			} else {
+				nota = ((float) inteiro + (float) decimo) / 10;
+			}
+			noNovo.setNota(nota);
+			
+			if (next != null) {
+				Node nextNode = new Node();
+				nextNode.setId(String.valueOf(next.getId()));
+				nextNode.setNome(next.getNome());
+				nextNode.setNota(((float) next.getInteiro() + (float) next.getDecimo()) / 10);
+				noNovo.setNext(nextNode);
+			}
+			
+			ListaMapeada.insert();
+			pAnda = next;
+		}
+		
+		return ListaMapeada;
 	}
 
 	/**
@@ -92,8 +129,18 @@ public class Operation {
 	 * @return {@code String} com a coleção de dados separada por ponto-e-vírgula (dados de cada pessoa) e quebras de linha (cada pessoa).
 	 */
 	public static String mapToString(final DLinkedList data) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		String StringFormatada = "";
+		Node pAnda = data.getHead();
+		
+		while(pAnda != null) {
+			StringFormatada += pAnda.getId() + ";";
+			StringFormatada += pAnda.getNome() + ";";
+			StringFormatada += pAnda.getNota() + "\n";
+			pAnda = pAnda.getNext();
+		}
+	
+		return StringFormatada;
+		
 	}
 
 }
