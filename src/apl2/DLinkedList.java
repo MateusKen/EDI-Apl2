@@ -35,14 +35,14 @@ public class DLinkedList {
 // COMPORTAMENTO:	Aloca um Node que contém os <dados da pessoa> e insere o
 //					novo nó no início da lista.
 	public void insert(String id, String nome, float nota) {
-		Node node = new Node(id, nome, nota, head, tail);
+		Node node = new Node(id, nome, nota, head, null);
 		
 		if (isEmpty()) {
 			tail = node;
 		}
 		head.setPrev(node);
 		head = node;
-		tail.setNext(head);
+
 		++count;
 	}
 
@@ -51,7 +51,7 @@ public class DLinkedList {
 // COMPORTAMENTO:	Aloca um Node que contém os <dados da pessoa> e insere o
 //					novo nó no final da lista.
 	public void append(String id, String nome, float nota) {
-		Node node = new Node(id, nome, nota, head, tail);
+		Node node = new Node(id, nome, nota, null, tail);
 		
 		if (isEmpty()) {
 			head = node;
@@ -59,7 +59,7 @@ public class DLinkedList {
 		
 		tail.setNext(node);
 		tail = node;
-		head.setPrev(tail);
+
 		++count;
 	}
 
@@ -116,7 +116,7 @@ public class DLinkedList {
 //					Ou retorna null caso não exista um nó com <ID da pessoa>.
 	public Node getNode(String id) {
 		Node pAnda = this.head;
-		while(pAnda.getId() != id || pAnda.getNext() != head) {
+		while(pAnda.getId() != id || pAnda.getNext() != null) {
 			pAnda = pAnda.getNext();
 		}
 		if (pAnda.getId() != id) return null;
