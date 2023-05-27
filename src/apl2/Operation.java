@@ -142,8 +142,21 @@ public class Operation {
 	 * @return Média das notas ({@code float}) contidas na coleção de dados ({@code data}).
 	 */
 	public static float reduce(final DLinkedList data) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		Node pAnda = data.getHead();
+		float soma = 0;
+		int count = 0;
+		
+		while(pAnda != null) {
+			float nota = pAnda.getNota();
+			if (nota == 99.9) {
+				nota = 0;
+			}
+			soma+=nota;
+			count+=1;
+			pAnda = pAnda.getNext();
+		}
+		float media = soma/count;
+		return media;
 	}
 
 	/**
