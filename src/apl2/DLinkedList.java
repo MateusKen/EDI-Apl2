@@ -206,17 +206,32 @@ public class DLinkedList {
 		sb.append("(" + count + ") \n");
 		
 		Node node = head;
-		while (node != null) {
-			sb.append("(23.S1-")
+		while (node != null) { 
+			if (node.getPrev() != null) { //Quando o nó anterior não for null
+				sb.append(node.getPrev().getId());
+			}
+			else {
+				sb.append("null");
+			}
+			
+			sb.append("<-(")
 			.append(node.getId())
-			.append(" ; ")
+			.append(";")
 			.append(node.getNome())
-			.append(" ; ")
+			.append(";")
 			.append(node.getNota())
-			.append(") -> \n");
+			.append(")->");
+			
+			if(node.getNext() != null) { //Quando o próximo nó não for null
+				sb.append(node.getNext().getId());
+			}
+			else {
+				sb.append("null");
+			}
+			sb.append("\n");
 			node = node.getNext();
 		}
-		sb.append("null.");
+		
 		
 		return sb.toString();
 	}
