@@ -38,10 +38,14 @@ public class Operation {
 			noNovo.setNome(nome);
 			
 			float nota;
-			if (decimo == 0) {
+			if (inteiro == -1 || decimo == -1) {
+				nota = 99.9f;
+			}
+			
+			else if (decimo == 0) {
 				nota = inteiro + 0.0f;
 			} else {
-				nota = ((float) inteiro + (float) decimo) / 10;
+				nota = ((float) inteiro + ((float) decimo) / 10);
 			}
 			noNovo.setNota(nota);
 			
@@ -70,18 +74,20 @@ public class Operation {
 	 * @return Uma nova {@code DLinkedList} que contém a coleção de dados ({@code data}) filtrada com nós que possuem apenas pessoas com notas válidas.
 	 */
 	public static DLinkedList filterRemoveNonGraded(final DLinkedList data) {
+		DLinkedList ListaValida = new DLinkedList(); //Cria a DLinkedList "ListaValida"
 		Node pAnda = data.getHead();
 		
 		while(pAnda != null) {
 			float nota = pAnda.getNota();
-			if (nota == 99.9) {
-				data.removeNode(pAnda.getId());
+			if (nota == 99.9f) 
+				pAnda = pAnda.getNext();		
+			else {	
+				ListaValida.append(pAnda.getId(),pAnda.getNome(),pAnda.getNota());
+				pAnda = pAnda.getNext();
 			}
-			System.out.println(pAnda);
-			pAnda = pAnda.getNext();
 		}
 		
-		return data;
+		return ListaValida;
 	}
 
 	/**
@@ -94,17 +100,20 @@ public class Operation {
 	 * @return Uma nova {@code DLinkedList} que contém a coleção de dados ({@code data}) filtrada com nós que possuem apenas pessoas com notas inválidas.
 	 */
 	public static DLinkedList filterRemoveGraded(final DLinkedList data) {
+		DLinkedList ListaInvalida = new DLinkedList(); //Cria a DLinkedList "Listainvalida"
 		Node pAnda = data.getHead();
 		
 		while(pAnda != null) {
 			float nota = pAnda.getNota();
-			if (nota != 99.9) {
-				data.removeNode(pAnda.getId());
+			if (nota != 99.9f) 
+				pAnda = pAnda.getNext();			
+			else {
+				ListaInvalida.append(pAnda.getId(),pAnda.getNome(),pAnda.getNota());
+				pAnda = pAnda.getNext();
 			}
-			pAnda = pAnda.getNext();
 		}
 		
-		return data;
+		return ListaInvalida;
 	}
 
 	/**
@@ -120,16 +129,20 @@ public class Operation {
 	 */
 	public static DLinkedList filterRemoveBelowAverage(final DLinkedList data, float average) {
 		Node pAnda = data.getHead();
+		DLinkedList ListaAcimaMedia = new DLinkedList(); //Cria a DLinkedList "ListaAcimaMedia"
 		
 		while(pAnda != null) {
 			float nota = pAnda.getNota();
 			if (nota < average) {
-				data.removeNode(pAnda.getId());
+				pAnda = pAnda.getNext();
+				}
+			else {
+				ListaAcimaMedia.append(pAnda.getId(),pAnda.getNome(),pAnda.getNota());
+				pAnda = pAnda.getNext();
 			}
-			pAnda = pAnda.getNext();
 		}
 		
-		return data;
+		return ListaAcimaMedia;
 	}
 	
 	/**
@@ -148,7 +161,7 @@ public class Operation {
 		
 		while(pAnda != null) {
 			float nota = pAnda.getNota();
-			if (nota == 99.9) {
+			if (nota == 99.9f) {
 				nota = 0;
 			}
 			soma+=nota;
