@@ -75,6 +75,13 @@ public class MainApl2 {
 				break;
 				
 		      case 2:
+		    	//Gerar o arquivo CSV.
+		    	try {
+		    		Data.saveStringToTextFile("dados.csv", contents);
+		    		System.out.print("Arquivo dados.csv carregado com sucesso!\n");
+		    	} catch(IOException e) {
+		    		System.err.println("Erro ao gravar arquivo!\n");
+		    	}
 		   
 				//DLinkedList fixedList = Operation.map(list);
 				System.out.println(">>>>>>>>>> Dados convertidos para a nova representação dos dados >>>>>>>>>>");
