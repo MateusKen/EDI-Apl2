@@ -53,7 +53,7 @@ public class Operation {
 				noNovo.setNext(nextNode);
 			}
 			
-			ListaMapeada.insert();
+			ListaMapeada.insert(IdNovo, nome, nota);
 			pAnda = next;
 		}
 		
