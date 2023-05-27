@@ -19,7 +19,7 @@ public class Node {
 	// TODO: Implementar a classe conforme o enunciado da atividade Apl2.
 	
 
-private String id;
+private int id;
 private String nome;
 private float nota;
 private Node next;
@@ -29,14 +29,14 @@ private Node prev;
     this("", "", 0, null, null);
   }
   
-  public Node(String nome, String id, float nota, Node next, Node prev){
+  public Node(int id, String nome, float nota, Node next, Node prev){
     this.id = id;
     this.nome = nome;
     this.nota = nota;
     this.next = next;
     this.prev = prev;
   }
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	
