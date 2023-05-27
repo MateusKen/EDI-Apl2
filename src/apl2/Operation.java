@@ -57,7 +57,7 @@ public class Operation {
 				noNovo.setNext(nextNode);
 			}
 			
-			ListaMapeada.insert(IdNovo, nome, nota);
+			ListaMapeada.append(IdNovo, nome, nota);
 			pAnda = next;
 		}
 		
