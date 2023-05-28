@@ -165,9 +165,6 @@ public class Operation {
 		
 		while(pAnda != null) {
 			float nota = pAnda.getNota();
-			if (nota == 99.9f) {
-				nota = 0;
-			}
 			soma+=nota;
 			count+=1;
 			pAnda = pAnda.getNext();
