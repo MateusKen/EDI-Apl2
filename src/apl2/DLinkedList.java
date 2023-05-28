@@ -168,11 +168,14 @@ public class DLinkedList {
 	public Node getNode(String id) {
 		Node pAnda = head;
 		
-		while(pAnda.getId() != id && pAnda.getNext() != null) {
+		while(pAnda != null) {
+			if(pAnda.getId().equals(id)) {
+				return pAnda;
+			}
 			pAnda = pAnda.getNext();
 		}
-		if (pAnda.getId() != id) return null;
-		return pAnda;	
+		
+		return null;
 		
 	}
 		
