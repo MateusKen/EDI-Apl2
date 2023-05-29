@@ -78,7 +78,15 @@ private Node prev;
   	}
 
   @Override
-	public String toString() {
-		return "(" + id + ";" + nome + ";" + nota + ")";
+  public String toString() {
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("(");
+	    sb.append(id);
+	    sb.append(";");
+	    sb.append(nome);
+	    sb.append(";");
+	    sb.append(nota);
+	    sb.append(")");
+	    return sb.toString();
 	}
-}
+} 
