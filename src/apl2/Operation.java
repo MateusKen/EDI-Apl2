@@ -165,6 +165,9 @@ public class Operation {
 		
 		while(pAnda != null) {
 			float nota = pAnda.getNota();
+			if (nota == 99.9f) {
+				nota = 0;
+			}
 			soma+=nota;
 			count+=1;
 			pAnda = pAnda.getNext();
@@ -183,7 +186,7 @@ public class Operation {
 	 * @param data Base de dados mapeada para o formato {@code DLinkedList} (via operação {@code map()}).
 	 * @return {@code String} com a coleção de dados separada por ponto-e-vírgula (dados de cada pessoa) e quebras de linha (cada pessoa).
 	 */
-	public static String mapToString(final DLinkedList data) {
+ public static String mapToString(final DLinkedList data) {
 		String StringFormatada = "";
 		Node pAnda = data.getHead();
 		
