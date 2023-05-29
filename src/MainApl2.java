@@ -1,4 +1,9 @@
-// arquivo: src/apl2/DLinkedList.java
+//*************************** ATENÇÃO! ****************************
+// O método main() deve ser alterado somente nos comentários TODO.
+// Todas as outras instruções devem permanecer intactas e o código
+// deve funcionar conforme descrito no enunciado da atividade.
+//*************************** ATENÇÃO! ****************************
+// arquivo: src/MainApl2.java
 
 // NOME: Enrico Cuono Alves Pereira		TIA: 32258798
 // NOME: Erik Samuel Viana Hsu			TIA: 32265921
@@ -6,243 +11,185 @@
 // NOME: Rodrigo Machado de Assis Oliveira de Lima		TIA: 32234678
 // NOME: Thiago Shihan Cardoso Toma		TIA: 32210744
 
-package apl2;
+// TODO: Listar todas as referências consultadas para solucionar a atividade.
 
-public class DLinkedList {
+import java.io.IOException;
+import java.util.Scanner;
+
+import apl2.DLinkedList;
+import apl2.Data;
+import apl2.LinkedListOriginal;
+import apl2.Node;
+import apl2.NodeOriginal;
+import apl2.Operation;
+
+public class MainApl2 {
 	
-	private Node head;
-	private Node tail;
-	private int count;
-	
+	public static void main(String[] args) {
+		
+		// Le o arquivo dados.txt e coloca todo o texto em uma string "conteudo"
 
-// OPERAÇÃO:		Método construtor
-// COMPORTAMENTO:	Cria uma lista vazia.
-	public DLinkedList() {
-		head = null;
-		tail = null;
-		count = 0;
-	}
-
-	
-// OPERAÇÃO:		insert(<dados da pessoa>)
-// COMPORTAMENTO:	Aloca um Node que contém os <dados da pessoa> e insere o
-//						novo nó no início da lista.
-	public void insert(String id, String nome, float nota) {
-		Node node = new Node(id, nome, nota, head, null);
-		    
-		if (isEmpty()) {
-		    tail = node;
-		} else {
-		    head.setPrev(node);
-		}
-		    
-		head = node;
-		count++;
-	}
-
-
-
-// OPERAÇÃO:		append(<dados da pessoa>)
-// COMPORTAMENTO:	Aloca um Node que contém os <dados da pessoa> e insere o
-//							novo nó no final da lista.
-	public void append(String id, String nome, float nota) {
-		Node node = new Node(id, nome, nota, null, tail);
-			    
-		if (isEmpty()) {
-			head = node;
-		} else {
-			tail.setNext(node);
+		String conteudo = null;
+		try {
+		conteudo = Data.loadTextFileToString("dados.txt");
+		} catch (IOException e) {
+		System.err.println("Arquivo não encontrado!");
+		e.printStackTrace();
+		System.exit(-1); 
 		}
 		
-		tail = node;
-		count++;
-	}
-
-
-
-// OPERAÇÃO: 		removeHead()
-// COMPORTAMENTO:	Remove o nó do início da lista e retorna a referência do
-//					nó removido.
-//					Ou retorna null caso a lista esteja vazia.
-	public Node removeHead() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		if (isEmpty()) {
-			return null;
-		}
+		//Coloca cada linha em um node da lista
+		LinkedListOriginal list = new LinkedListOriginal();
 		
-		Node toRemove = head;
-
-		head = head.getNext();
-		--count;
+		String[] linhas = conteudo.split("\n");
 		
-		if (isEmpty()) {
-			tail = null;
-		}
-		else {
-			head.setPrev(null);
-		}
-		
-		toRemove.setNext(null);
-		return toRemove;
-	}
-
-
-// OPERAÇÃO:		removeTail()
-// COMPORTAMENTO:	Remove o nó do final da lista e retorna a referência do
-//					nó removido.
-//					Ou retorna null caso a lista esteja vazia.
-	public Node removeTail() {
-		if (isEmpty()) 
-			return null;
-		if (head == tail)
-			return removeHead();
-		
-		Node toRemove = tail;
-		
-		tail = tail.getPrev();
-		--count;
-		
-		tail.setNext(null);
-
-		toRemove.setPrev(null);
-		return toRemove;
-	}
-
-
-// OPERAÇÃO:		removeNode(<ID da pessoa>)
-// COMPORTAMENTO:	Remove o nó que contém o <ID da pessoa> da lista e retorna
-//					a referência do nó removido.
-//					Ou retorna null caso não exista um nó com <ID da pessoa>.
-	public Node removeNode(String id) {
-	    Node pAnda = head;
-
-	    while (pAnda != null) {
-	        if (pAnda.getId().equals(id)) {
-	            Node prox = pAnda.getNext();
-	            Node ant = pAnda.getPrev();
-
-	            if (ant != null) {
-	                ant.setNext(prox);
-	            } else {
-	                head = prox;
-	            }
-
-	            if (prox != null) {
-	                prox.setPrev(ant);
-	            } else {
-	                tail = ant;
-	            }
-
-	            pAnda.setNext(null);
-	            pAnda.setPrev(null);
-
-	            --count;
-	            return pAnda;
-	        }
-	        
-	        pAnda = pAnda.getNext();
-	    }
-	    
-	    return null;
-	}
-
-
-// OPERAÇÃO:		getHead()
-// COMPORTAMENTO:	Retorna uma referência para o nó do início da lista.
-//					Ou retorna null caso a lista esteja vazia.
-	public Node getHead() {
-		return head;
-	}
-
-
-// OPERAÇÃO:		getTail()
-// COMPORTAMENTO:	Retorna uma referência para o nó do final da lista.
-//					Ou retorna null caso a lista esteja vazia.
-	public Node getTail() {
-		return tail;
-	}
-
-
-// OPERAÇÃO:		getNode(<ID da pessoa>)
-// COMPORTAMENTO:	Retorna uma referência para o nó que contém o <ID da pessoa>
-//					da lista.
-//					Ou retorna null caso não exista um nó com <ID da pessoa>.
-	public Node getNode(String id) {
-		Node pAnda = head;
-		
-		while(pAnda != null) {
-			if(pAnda.getId().equals(id)) {
-				return pAnda;
-			}
-			pAnda = pAnda.getNext();
-		}
-		
-		return null;
-		
-	}
-		
-
-
-// OPERAÇÃO:		count()
-// COMPORTAMENTO:	Retorna a quantidade de nós da lista.
-	public int count() {
-		return count;
-	}
-
-
-// OPERAÇÃO:		isEmpty()
-// COMPORTAMENTO:	Retorna true se a lista estiver vazia ou false, caso contrário.
-	public boolean isEmpty() {
-		return head == null;
-	}
-
-
-// OPERAÇÃO:		clear()
-// COMPORTAMENTO:	Esvazia a lista, liberando a memória de todos os nós da lista.
-	public void clear() {
-		while (!isEmpty()) {
-			removeHead();	
-		}
-	}
-
-
-// OPERAÇÃO:		toString()
-// COMPORTAMENTO:	Retorna uma string com o conteúdo da lista (caso queira, use o
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append("(" + count + ") \n");
-		
-		Node node = head;
-		while (node != null) { 
-			if (node.getPrev() != null) { //Quando o nó anterior não for null
-				sb.append(node.getPrev().getId());
-			}
-			else {
-				sb.append("null");	
-			}
+		for (int i = 0; i < linhas.length; i++) {
 			
-			sb.append("<-(")
-			.append(node.getId())
-			.append(";")
-			.append(node.getNome())
-			.append(";")
-			.append(node.getNota())
-			.append(")->");
+			String linha = linhas[i];
 			
-			if(node.getNext() != null) { //Quando o próximo nó não for null
-				sb.append(node.getNext().getId());
-			}
-			else {
-				sb.append("null");
-			}
-			sb.append("\n");
-			node = node.getNext();
+			//Cada parte da linha em um atributo do node
+			String[] partes = linha.split("#");
+			list.append(Integer.parseInt(partes[0]), 
+						partes[1], 
+						Integer.parseInt(partes[2]), 
+						Integer.parseInt(partes[3]));
+
 		}
+			
+		boolean flag = false;
 		
+		 String opcoes = "\n\nMenu de Opções\n\n1 - Dados originais:\n2 - Dados convertidos:\n3 - Lista notas filtradas válidas:\n4 - Lista notas filtradas inválidas:\n5 - Média de notas válidas:\n6 - Notas acima da média:\n7 - Lista mapeada para uma única string:\n8 - Finaliza sistema.\n\n Opção:";
 		
-		return sb.toString();
+		 DLinkedList fixedList = Operation.map(list);
+		 DLinkedList filteredGradedList = Operation.filterRemoveNonGraded(fixedList);
+		 DLinkedList filteredNonGradedList = Operation.filterRemoveGraded(fixedList);
+		 float average = Operation.reduce(filteredGradedList);
+		 DLinkedList aboveAverageList = Operation.filterRemoveBelowAverage(filteredGradedList, average);
+		 String contents = Operation.mapToString(fixedList);
+		 
+		 Scanner ent = new Scanner(System.in);
+		  int opcao = 0;
+		  do{
+		    System.out.print(opcoes);
+		    opcao = ent.nextInt();
+		    switch(opcao){
+		      case 1:
+				System.out.println(">>>>>>>>>> Dados originais (sistema legado) >>>>>>>>>>");
+				System.out.println(list);
+				System.out.println("<<<<<<<<<< Dados originais (sistema legado) <<<<<<<<<<\n");
+				break;
+				
+		      case 2:
+		    	//Gerar o arquivo CSV.
+		    	try {
+		    		Data.saveStringToTextFile("dados.csv", contents);
+		    	} catch(IOException e) {
+		    		System.err.println("Erro ao gravar arquivo!\n");
+		    	}
+		   
+				//DLinkedList fixedList = Operation.map(list);
+				System.out.println(">>>>>>>>>> Dados convertidos para a nova representação dos dados >>>>>>>>>>");
+				System.out.println(fixedList);
+				System.out.println("<<<<<<<<<< Dados convertidos para a nova representação dos dados <<<<<<<<<<\n");
+				break;
+				
+		      case 3:
+				//DLinkedList filteredGradedList = Operation.filterRemoveNonGraded(fixedList);
+				System.out.println(">>>>>>>>>> Lista filtrada (somente notas válidas) >>>>>>>>>>");
+				System.out.println(filteredGradedList);
+				System.out.println("<<<<<<<<<< Lista filtrada (somente notas válidas) <<<<<<<<<<\n");
+				break;
+				
+		      case 4:
+		    	  
+				//DLinkedList filteredNonGradedList = Operation.filterRemoveGraded(fixedList);
+				System.out.println(">>>>>>>>>> Lista filtrada (somente 'ausência de nota') >>>>>>>>>>");
+				System.out.println(filteredNonGradedList);
+				System.out.println("<<<<<<<<<< Lista filtrada (somente 'ausência de nota') <<<<<<<<<<\n");
+				break;
+				
+		      case 5:
+		    	  
+				//float average = Operation.reduce(filteredGradedList);
+				System.out.println(">>>>>>>>>> Média das notas válidas >>>>>>>>>>");
+				System.out.println(average);
+				System.out.println("<<<<<<<<<< Média das notas válidas <<<<<<<<<<\n");
+				break;
+				
+		      case 6:
+				//DLinkedList aboveAverageList = Operation.filterRemoveBelowAverage(filteredGradedList, average);
+				System.out.println(">>>>>>>>>> Lista com notas acima da média >>>>>>>>>>");
+				System.out.println(aboveAverageList);
+				System.out.println("<<<<<<<<<< Lista com notas acima da média <<<<<<<<<<\n");
+				break;
+		      case 7:
+				//String contents = Operation.mapToString(fixedList);
+				System.out.println(">>>>>>>>>> Lista mapeada para uma única string >>>>>>>>>>");
+				System.out.println(contents);
+				System.out.println("<<<<<<<<<< Lista mapeada para uma única string <<<<<<<<<<\n");
+				break;
+				
+		      case 8:
+		    	  System.out.println("Encerra o programa");
+		          break;
+		        }
+		  }while (opcao != 8);
+				//Item 2 do menu
+				// TODO: Salvar o conteúdo da String contents em um arquivo chamado "dados.csv".
+				String nomeArquivoCSV = "dados.csv";
+				String conteudo2 = "* nó,da,DLinkedList";
+				try {
+					Data.saveStringToTextFile(nomeArquivoCSV, conteudo2);
+				} catch (IOException e){
+					System.err.println("Erro ao gravar arquivo!");
+					e.printStackTrace();
+				}
+				
+				Node test1 = fixedList.getNode("23.S1-999");
+				System.out.println(">>>>>>>>>> test1 >>>>>>>>>>\n" + test1.getPrev().getId() + "<-"+ test1 + "->" + test1.getNext().getId() + "\n<<<<<<<<<< test1 <<<<<<<<<<\n");
+		
+				Node test2 = fixedList.removeNode("23.S1-999");
+				System.out.println(">>>>>>>>>> test2 >>>>>>>>>>\n" + test2.toString() + "\n<<<<<<<<<< test2 <<<<<<<<<<\n");
+		
+				Node test3 = fixedList.getNode("23.S1-999");
+				System.out.println(">>>>>>>>>> test3 >>>>>>>>>>\n" + test3.getPrev().getId() + "<-"+ test3 + "->" + test3.getNext().getId() + "\n<<<<<<<<<< test3 <<<<<<<<<<\n");
+		
+				aboveAverageList.clear();
+				System.out.println(">>>>>>>>>> aboveAverageList.clear() >>>>>>>>>>\n" + aboveAverageList + "\n<<<<<<<<<< aboveAverageList.clear() <<<<<<<<<<\n");
+		
+				DLinkedList testList = new DLinkedList();
+				// TODO: Inserir um nó no início da lista testList com os dados ("ABC", "John Doe", 4.7f).
+				testList.insert("ABC", "John Doe", 4.7f);
+				// TODO: Inserir um nó no final da lista testList com os dados ("XYZ", "Jane Doe", 9.9f).
+				testList.append("XYZ", "Jane Doe", 9.9f);
+				// TODO: Inserir um nó no início da lista testList com os dados ("321", "Test", 2.3f).
+				testList.insert("321", "Test", 2.3f);
+				// TODO: Inserir um nó no final da lista testList com os dados ("Nothing", "Yada yada yada", 99.9f).
+				testList.append("Nothing", "Yada yada yada", 99.9f);
+				System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
+				System.out.println("testList.getHead(): " + testList.getHead());
+				System.out.println("testList.getTail(): " + testList.getTail());
+				System.out.println("testList.removeHead(): " + testList.removeHead());
+				System.out.println("testList.removeTail(): " + testList.removeTail() + '\n');
+				System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
+				System.out.println("testList.getHead(): " + testList.getHead());
+				System.out.println("testList.getTail(): " + testList.getTail());
+				System.out.println("testList.removeNode(\"ABC\"): " + testList.removeNode("ABC") + '\n');
+				System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
+				System.out.println("testList.getHead(): " + testList.getHead());
+				System.out.println("testList.getTail(): " + testList.getTail() + '\n');
+				// TODO: Inserir um nó no início da lista testList com os dados ("qwerty", "QWERTY", 1.2f).
+				testList.insert("qwerty", "QWERTY", 1.2f);
+				// TODO: Inserir um nó no final da lista testList com os dados ("WASD", "wasd", 3.4f).
+				testList.append("WASD", "wasd", 3.4f);
+				// TODO: Inserir um nó no início da lista testList com os dados ("ijkl", "IJKL", 5.6f).
+				testList.insert("ijkl", "IJKL", 5.6f);
+				// TODO: Inserir um nó no final da lista testList com os dados ("1234", "Um Dois Tres Quatro", 7.8f).
+				testList.append("1234", "Um Dois Tres Quatro", 7.8f);
+				System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
+				testList.clear();
+				System.out.println(">>>>>>>>>> testList.clear() >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList.clear() <<<<<<<<<<\n");
+		
 	}
 
 }
