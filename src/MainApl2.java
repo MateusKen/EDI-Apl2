@@ -158,19 +158,16 @@ public class MainApl2 {
 				testList.insert("321", "Test", 2.3f);
 				// Inserir um nó no final da lista testList com os dados ("Nothing", "Yada yada yada", 99.9f).
 				testList.append("Nothing", "Yada yada yada", 99.9f);
-				System.out.println(">>>>>>>>>> testList >>>>>>>>>>");
-				System.out.println(testList);
+				System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
 				System.out.println("testList.getHead(): " + testList.getHead());
 				System.out.println("testList.getTail(): " + testList.getTail());
 				System.out.println("testList.removeHead(): " + testList.removeHead());
 				System.out.println("testList.removeTail(): " + testList.removeTail() + '\n');
-				System.out.println(">>>>>>>>>> testList >>>>>>>>>>");
-				System.out.println(testList);
+				System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
 				System.out.println("testList.getHead(): " + testList.getHead());
 				System.out.println("testList.getTail(): " + testList.getTail());
 				System.out.println("testList.removeNode(\"ABC\"): " + testList.removeNode("ABC") + '\n');
-				System.out.println(">>>>>>>>>> testList >>>>>>>>>>");
-				System.out.println(testList);
+				System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
 				System.out.println("testList.getHead(): " + testList.getHead());
 				System.out.println("testList.getTail(): " + testList.getTail() + '\n');
 				// Inserir um nó no início da lista testList com os dados ("qwerty", "QWERTY", 1.2f).
@@ -181,10 +178,8 @@ public class MainApl2 {
 				testList.insert("ijkl", "IJKL", 5.6f);
 				// Inserir um nó no final da lista testList com os dados ("1234", "Um Dois Tres Quatro", 7.8f).
 				testList.append("1234", "Um Dois Tres Quatro", 7.8f);
-				System.out.println(">>>>>>>>>> testList >>>>>>>>>>");
-				System.out.println(testList);
+				System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
 				testList.clear();
-				System.out.println(">>>>>>>>>> testList.clear() >>>>>>>>>>");
-				System.out.println(testList);
+				System.out.println(">>>>>>>>>> testList.clear() >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList.clear() <<<<<<<<<<\n");
 	}
 }
