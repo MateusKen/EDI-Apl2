@@ -147,12 +147,19 @@ public class MainApl2 {
 				
 				Node test1 = fixedList.getNode("23.S1-999");
 				System.out.println(">>>>>>>>>> test1 >>>>>>>>>>\n" + test1.getPrev().getId() + "<-"+ test1 + "->" + test1.getNext().getId() + "\n<<<<<<<<<< test1 <<<<<<<<<<\n");
-		
+				
+				
 				Node test2 = fixedList.removeNode("23.S1-999");
-				System.out.println(">>>>>>>>>> test2 >>>>>>>>>>\n" + test2.toString() + "\n<<<<<<<<<< test2 <<<<<<<<<<\n");
-		
+				System.out.println(">>>>>>>>>> test2 >>>>>>>>>>");
+				if (test2 != null) {
+				    System.out.println(test2.getPrev() + "<-(" + test2 + ")->" + test2.getNext());
+				} else {
+				    System.out.println("null <- (" + test2.getId() + ") -> null");
+				}
+				System.out.println("<<<<<<<<<< test2 <<<<<<<<<<\n");		
+				
 				Node test3 = fixedList.getNode("23.S1-999");
-				System.out.println(">>>>>>>>>> test3 >>>>>>>>>>\n" + test3.getPrev().getId() + "<-"+ test3 + "->" + test3.getNext().getId() + "\n<<<<<<<<<< test3 <<<<<<<<<<\n");
+				System.out.println(">>>>>>>>>> test3 >>>>>>>>>>\n" + test3 + "\n<<<<<<<<<< test3 <<<<<<<<<<\n");
 		
 				aboveAverageList.clear();
 				System.out.println(">>>>>>>>>> aboveAverageList.clear() >>>>>>>>>>\n" + aboveAverageList + "\n<<<<<<<<<< aboveAverageList.clear() <<<<<<<<<<\n");
