@@ -134,21 +134,12 @@ public class MainApl2 {
 		          break;
 		        }
 		  }while (opcao != 8);
-				//Item 2 do menu
-				// TODO: Salvar o conteúdo da String contents em um arquivo chamado "dados.csv".
-				String nomeArquivoCSV = "dados.csv";
-				String conteudo2 = "* nó,da,DLinkedList";
-				try {
-					Data.saveStringToTextFile(nomeArquivoCSV, conteudo2);
-				} catch (IOException e){
-					System.err.println("Erro ao gravar arquivo!");
-					e.printStackTrace();
-				}
 				
 				Node test1 = fixedList.getNode("23.S1-999");
-				System.out.println(">>>>>>>>>> test1 >>>>>>>>>>\n" + test1.getPrev().getId() + "<-"+ test1 + "->" + test1.getNext().getId() + "\n<<<<<<<<<< test1 <<<<<<<<<<\n");
-				
-				
+				System.out.println(">>>>>>>>>> test1 >>>>>>>>>>");
+				System.out.println(test1.getPrev().getId() + "<-" + test1 + "->" + test1.getNext().getId());
+				System.out.println("<<<<<<<<<< test1 <<<<<<<<<<\n");
+
 				Node test2 = fixedList.removeNode("23.S1-999");
 				System.out.println(">>>>>>>>>> test2 >>>>>>>>>>");
 				if (test2 != null) {
@@ -156,47 +147,54 @@ public class MainApl2 {
 				} else {
 				    System.out.println("null <- (" + test2.getId() + ") -> null");
 				}
-				System.out.println("<<<<<<<<<< test2 <<<<<<<<<<\n");		
-				
+				System.out.println("<<<<<<<<<< test2 <<<<<<<<<<\n");
+
 				Node test3 = fixedList.getNode("23.S1-999");
-				System.out.println(">>>>>>>>>> test3 >>>>>>>>>>\n" + test3 + "\n<<<<<<<<<< test3 <<<<<<<<<<\n");
-		
+				System.out.println(">>>>>>>>>> test3 >>>>>>>>>>");
+				System.out.println(test3);
+				System.out.println("<<<<<<<<<< test3 <<<<<<<<<<\n");
+
 				aboveAverageList.clear();
-				System.out.println(">>>>>>>>>> aboveAverageList.clear() >>>>>>>>>>\n" + aboveAverageList + "\n<<<<<<<<<< aboveAverageList.clear() <<<<<<<<<<\n");
-		
+				System.out.println(">>>>>>>>>> aboveAverageList.clear() >>>>>>>>>>");
+				System.out.println(aboveAverageList);
+				System.out.println("<<<<<<<<<< aboveAverageList.clear() <<<<<<<<<<\n");
+
 				DLinkedList testList = new DLinkedList();
-				// TODO: Inserir um nó no início da lista testList com os dados ("ABC", "John Doe", 4.7f).
+				// Inserir um nó no início da lista testList com os dados ("ABC", "John Doe", 4.7f).
 				testList.insert("ABC", "John Doe", 4.7f);
-				// TODO: Inserir um nó no final da lista testList com os dados ("XYZ", "Jane Doe", 9.9f).
+				// Inserir um nó no final da lista testList com os dados ("XYZ", "Jane Doe", 9.9f).
 				testList.append("XYZ", "Jane Doe", 9.9f);
-				// TODO: Inserir um nó no início da lista testList com os dados ("321", "Test", 2.3f).
+				// Inserir um nó no início da lista testList com os dados ("321", "Test", 2.3f).
 				testList.insert("321", "Test", 2.3f);
-				// TODO: Inserir um nó no final da lista testList com os dados ("Nothing", "Yada yada yada", 99.9f).
+				// Inserir um nó no final da lista testList com os dados ("Nothing", "Yada yada yada", 99.9f).
 				testList.append("Nothing", "Yada yada yada", 99.9f);
-				System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
+				System.out.println(">>>>>>>>>> testList >>>>>>>>>>");
+				System.out.println(testList);
 				System.out.println("testList.getHead(): " + testList.getHead());
 				System.out.println("testList.getTail(): " + testList.getTail());
 				System.out.println("testList.removeHead(): " + testList.removeHead());
 				System.out.println("testList.removeTail(): " + testList.removeTail() + '\n');
-				System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
+				System.out.println(">>>>>>>>>> testList >>>>>>>>>>");
+				System.out.println(testList);
 				System.out.println("testList.getHead(): " + testList.getHead());
 				System.out.println("testList.getTail(): " + testList.getTail());
 				System.out.println("testList.removeNode(\"ABC\"): " + testList.removeNode("ABC") + '\n');
-				System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
+				System.out.println(">>>>>>>>>> testList >>>>>>>>>>");
+				System.out.println(testList);
 				System.out.println("testList.getHead(): " + testList.getHead());
 				System.out.println("testList.getTail(): " + testList.getTail() + '\n');
-				// TODO: Inserir um nó no início da lista testList com os dados ("qwerty", "QWERTY", 1.2f).
+				// Inserir um nó no início da lista testList com os dados ("qwerty", "QWERTY", 1.2f).
 				testList.insert("qwerty", "QWERTY", 1.2f);
-				// TODO: Inserir um nó no final da lista testList com os dados ("WASD", "wasd", 3.4f).
+				// Inserir um nó no final da lista testList com os dados ("WASD", "wasd", 3.4f).
 				testList.append("WASD", "wasd", 3.4f);
-				// TODO: Inserir um nó no início da lista testList com os dados ("ijkl", "IJKL", 5.6f).
+				// Inserir um nó no início da lista testList com os dados ("ijkl", "IJKL", 5.6f).
 				testList.insert("ijkl", "IJKL", 5.6f);
-				// TODO: Inserir um nó no final da lista testList com os dados ("1234", "Um Dois Tres Quatro", 7.8f).
+				// Inserir um nó no final da lista testList com os dados ("1234", "Um Dois Tres Quatro", 7.8f).
 				testList.append("1234", "Um Dois Tres Quatro", 7.8f);
-				System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
+				System.out.println(">>>>>>>>>> testList >>>>>>>>>>");
+				System.out.println(testList);
 				testList.clear();
-				System.out.println(">>>>>>>>>> testList.clear() >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList.clear() <<<<<<<<<<\n");
-		
+				System.out.println(">>>>>>>>>> testList.clear() >>>>>>>>>>");
+				System.out.println(testList);
 	}
-
 }
