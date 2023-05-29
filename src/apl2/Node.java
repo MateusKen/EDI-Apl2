@@ -80,6 +80,8 @@ private Node prev;
   @Override
   public String toString() {
 	    StringBuilder sb = new StringBuilder();
+	    sb.append(prev == null ? "null" : prev.getId());
+	    sb.append(" <- ");
 	    sb.append("(");
 	    sb.append(id);
 	    sb.append(";");
@@ -87,6 +89,9 @@ private Node prev;
 	    sb.append(";");
 	    sb.append(nota);
 	    sb.append(")");
+	    sb.append(" -> ");
+	    sb.append(next == null ? "null" : next.getId());
 	    return sb.toString();
+	    
 	}
 } 
