@@ -226,9 +226,9 @@ public class DLinkedList {
 			
 			sb.append(" <-(")
 			.append(node.getId())
-			.append(";")
+			.append("; ")
 			.append(node.getNome())
-			.append(";")
+			.append("; ")
 			.append(node.getNota())
 			.append(")-> ");
 			
