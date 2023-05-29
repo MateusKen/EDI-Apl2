@@ -213,7 +213,7 @@ public class DLinkedList {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("(" + count + ") \n");
+		sb.append("(" + count + ")\n");
 		
 		Node node = head;
 		while (node != null) { 
@@ -224,13 +224,13 @@ public class DLinkedList {
 				sb.append("null");
 			}
 			
-			sb.append(" <-(")
+			sb.append(" <- (")
 			.append(node.getId())
 			.append("; ")
 			.append(node.getNome())
 			.append("; ")
 			.append(node.getNota())
-			.append(")-> ");
+			.append(") -> ");
 			
 			if(node.getNext() != null) { //Quando o próximo nó não for null
 				sb.append(node.getNext().getId());
