@@ -114,35 +114,38 @@ public class DLinkedList {
 //					a referência do nó removido.
 //					Ou retorna null caso não exista um nó com <ID da pessoa>.
 	public Node removeNode(String id) {
-		Node pAnda = head;
-		
-		while(pAnda.getId() != id && pAnda.getNext() != null) {
-			pAnda = pAnda.getNext();
-		}
-		if (pAnda.getId() != id) return null;
-		
-		Node prox = pAnda.getNext();
-		Node ant = pAnda.getPrev();
-		
-	    if (ant != null) {
-	        ant.setNext(prox);
-	    } else {
-	        head = prox; 
-	    }
+	    Node pAnda = head;
 
-	    if (prox != null) {
-	        prox.setPrev(ant);
-	    } else {
-	        tail = ant;
-	    }
+	    while (pAnda != null) {
+	        if (pAnda.getId().equals(id)) {
+	            Node prox = pAnda.getNext();
+	            Node ant = pAnda.getPrev();
 
-	    pAnda.setNext(null);
-	    pAnda.setPrev(null);
+	            if (ant != null) {
+	                ant.setNext(prox);
+	            } else {
+	                head = prox;
+	            }
+
+	            if (prox != null) {
+	                prox.setPrev(ant);
+	            } else {
+	                tail = ant;
+	            }
+
+	            pAnda.setNext(null);
+	            pAnda.setPrev(null);
+
+	            --count;
+	            return pAnda;
+	        }
+	        
+	        pAnda = pAnda.getNext();
+	    }
 	    
-	    --count;
-		
-		return pAnda;
+	    return null;
 	}
+
 
 
 // OPERAÇÃO:		getHead()
